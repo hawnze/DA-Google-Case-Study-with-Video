@@ -1,0 +1,35 @@
+---
+title: "Bike Capstone Project"
+author: "Hans Dano"
+date: "`r Sys.Date()`"
+output: html_document
+---
+#My Data Visualization and Analysis for Google Capstone Project
+
+#Load Packages
+```{r}
+library(dplyr)
+library(ggplot2)
+library(openxlsx)
+```
+
+
+## Import Data
+```{r}
+bikes_data <- read.xlsx("C:/Users/hansj/OneDrive/Desktop/Google DA Cert/Capstone Project/Bike Capstone Project/bikes_data.xlsx")
+
+head(bikes_data)
+```
+##Preview Data
+```{r}
+#Take a look at the rows with the highest count (already grouped by every single column)
+#Descending order
+bikes_descending <- bikes_data %>% arrange(-Count)
+bikes_descending
+```
+
+```{r}
+#Let's further group by Month and see what we can find
+bikes_data %>% group_by(Month.Name) %>% arrange(-Count, .by_group = TRUE)
+```
+
